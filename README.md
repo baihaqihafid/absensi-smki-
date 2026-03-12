@@ -1,59 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏫 Sistem Presensi Digital — SMK Islam Krembung
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem presensi digital berbasis web untuk SMK Islam Krembung, dibangun menggunakan **Laravel**. Mendukung 4 role pengguna dengan alur yang berbeda-beda.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 👥 Role Pengguna
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Role | Akses |
+|------|-------|
+| **Admin** | Kelola seluruh data siswa, guru, pengguna, presensi, dan laporan |
+| **Siswa** | Presensi masuk & keluar harian |
+| **Guru** | Isi presensi mengajar per jam ke |
+| **Kiosk** | Terminal absen siswa tanpa login pribadi |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🔄 Alur Sistem
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 🔐 Login
+Semua pengguna login melalui satu halaman. Setelah berhasil, sistem otomatis mengarahkan ke dashboard sesuai role masing-masing.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+### 👨‍🎓 Alur Siswa
+1. Login → masuk ke **Dashboard Siswa**
+2. Klik menu **Presensi**
+3. Pilih status kehadiran → klik **Presensi Masuk**
+   - Jika jam masuk melebihi **07:00**, status otomatis berubah menjadi **Terlambat**
+   - Jika memilih Izin / Sakit / Alpha → bisa isi keterangan
+4. Saat pulang → klik **Presensi Keluar**
+5. Riwayat presensi 7 hari terakhir bisa dilihat langsung di halaman yang sama
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+### 👨‍🏫 Alur Guru
+1. Login → masuk ke **Dashboard Guru**
+2. Klik menu **Isi Presensi**
+3. Isi form: Jam Ke, Mata Pelajaran, Kelas, Jurusan, Sub Kelas
+4. Sistem otomatis menentukan status berdasarkan jadwal:
+   - **Senin–Kamis**: tersedia jam ke-1 sampai ke-9
+   - **Jumat**: tersedia jam ke-1 sampai ke-7
+   - Toleransi keterlambatan **10 menit** per jam
+5. Riwayat presensi 7 hari terakhir tampil di halaman yang sama
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+### 🖥️ Alur Kiosk
+1. Buka halaman kiosk (login dengan akun role kiosk)
+2. Siswa ketik **username** lalu klik Absen
+3. Sistem cek jam masuk → status otomatis Hadir / Terlambat
+4. Cocok dipakai sebagai terminal absen di depan kelas / lobi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+### 🛠️ Alur Admin
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Kelola Data
+- **Kelola Siswa** → tambah, edit, hapus data siswa. Filter berdasarkan jurusan, tingkat, sub kelas
+- **Kelola Guru** → tambah, edit, hapus data guru beserta mata pelajaran yang diampu
+- **Kelola Pengguna** → tambah, edit, hapus akun admin. Bisa import massal via file Excel
 
-## Security Vulnerabilities
+#### Data Presensi
+- **Data Presensi Siswa** → lihat, edit, hapus, dan tambah manual presensi siswa per hari
+- **Data Presensi Guru** → lihat, edit, hapus presensi guru. Filter berdasarkan tanggal, guru, kelas
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Laporan & Export
+- **Laporan Siswa** → rekap presensi siswa dengan filter tanggal, jurusan, tingkat, sub kelas. Bisa export ke **Excel**
+- **Laporan Guru** → rekap presensi guru dengan filter lengkap. Bisa export ke **Excel**
 
-## License
+#### Laporan Masalah
+- Admin bisa melihat semua laporan masalah yang masuk dari siswa dan guru
+- Bisa update status: **Belum Ditangani** → **Sedang Diproses** → **Selesai**
+- Bisa kirim balasan langsung ke pelapor
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+### 🐛 Fitur Laporkan Masalah
+Tersedia untuk semua role (admin, siswa, guru). Jika menemukan bug atau ingin memberi masukan:
+1. Klik menu **Laporkan Masalah** di sidebar
+2. Pilih kategori: Bug/Error, Tampilan, Saran Fitur, atau Lainnya
+3. Isi judul dan deskripsi masalah → kirim
+4. Bisa memantau status dan balasan dari admin di halaman yang sama
+
+---
+
+## 🗂️ Struktur Database
+
+| Tabel | Keterangan |
+|-------|-----------|
+| `users` | Data semua pengguna (admin, siswa, guru, kiosk) |
+| `presensi` | Data presensi harian siswa |
+| `presensi_guru` | Data presensi mengajar guru |
+| `jurusan` | Data jurusan (TKJ, MP, TP, TSM, TITL) |
+| `kelas` | Data kelas per jurusan dan tingkat |
+| `laporan_masalah` | Laporan bug / masukan dari pengguna |
+
+---
+
+## 🧰 Teknologi
+
+- **Backend**: Laravel (PHP)
+- **Frontend**: Bootstrap 5, Font Awesome
+- **Database**: MySQL
+- **Export Excel**: PhpSpreadsheet
