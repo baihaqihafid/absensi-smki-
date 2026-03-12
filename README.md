@@ -1,4 +1,4 @@
-# 🏫 Sistem Presensi Digital — SMK Islam Krembung
+#  Sistem Presensi Digital — SMK Islam Krembung
 
 Sistem presensi digital berbasis web untuk SMK Islam Krembung, dibangun menggunakan **Laravel**. Mendukung 4 role pengguna dengan alur yang berbeda-beda.
 
