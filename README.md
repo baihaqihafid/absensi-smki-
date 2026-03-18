@@ -6,10 +6,10 @@ Sistem presensi digital berbasis web untuk SMK Islam Krembung, dibangun mengguna
 ## 📸 Tampilan Sistem
 
 <p align="center">
-  <img src="public/assets/images/login.png" width="30%" />
-  <img src="public/assets/images/dashboard.png" width="30%" />
-  <img src="public/assets/images/presensi.png" width="30%" />
-  <img src="public/assets/images/laporan.png" width="30%" />
+  <img src="public/assets/images/login.png" width="40%" />
+  <img src="public/assets/images/dashboard.png" width="40%" />
+  <img src="public/assets/images/presensi.png" width="40%" />
+  <img src="public/assets/images/laporan.png" width="40%" />
 </p>
 
 <p align="center">
