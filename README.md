@@ -3,7 +3,20 @@
 Sistem presensi digital berbasis web untuk SMK Islam Krembung, dibangun menggunakan **Laravel**. Mendukung 4 role pengguna dengan alur yang berbeda-beda.
 
 ---
+## 📸 Tampilan Sistem
 
+<p align="center">
+  <img src="assets/images/login.png" width="23%" />
+  <img src="assets/images/dashboard.png" width="23%" />
+  <img src="assets/images/presensi.png" width="23%" />
+  <img src="assets/images/laporan.png" width="23%" />
+</p>
+
+<p align="center">
+  Login &nbsp;&nbsp; Dashboard &nbsp;&nbsp; Presensi &nbsp;&nbsp; Laporan
+</p>
+
+---
 ## 👥 Role Pengguna
 
 | Role | Akses |
